@@ -8,12 +8,12 @@ class Mastermind:
 
     @property
     def symbols(self):
-        pass
+        return self._symbols
 
     @property
     def code_length(self):
-        pass
+        return self._code_length
 
     @property
     def num_attempts(self):
-        pass
+        return self._num_attempts
