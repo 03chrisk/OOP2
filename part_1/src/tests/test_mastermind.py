@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import patch
 import os
 import sys
 sys.path.append(os.getcwd() + "/part_1/src/")
@@ -45,6 +46,22 @@ class Tests(unittest.TestCase):
         correct_pos, correct_symbol = self.mastermind.evaluate_guess(guess)
         self.assertEqual(correct_pos, 0)
         self.assertEqual(correct_symbol, 0)
+
+    @patch('builtins.input', side_effect=['BBBB', 'WBYG'])
+    @patch('builtins.print')  # Mock print to suppress output during test
+    def test_play_win(self, mock_print, mock_input):
+        self.mastermind.play()
+        mock_print.assert_any_call("Congratulations! You've cracked the code.")
+
+    @patch('builtins.input', side_effect=['BBBB', 'YYYY', 'RRRR',
+                                          'GGGG', 'WWWW', 'BBBB',
+                                          'YYYY', 'RRRR', 'GGGG', 'WWWW'])
+    @patch('builtins.print')  # Mock print
+    def test_play_lose(self, mock_print, mock_input):
+        self.mastermind.play()
+        mock_print.assert_any_call(
+            "Game Over. The correct code was:", ''.join(
+                self.mastermind.codemaker.secret_code))
 
 
 if __name__ == "__main__":

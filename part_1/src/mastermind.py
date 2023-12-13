@@ -22,3 +22,6 @@ class Mastermind():
                 if symbol != self.codemaker.secret_code[i]:
                     correct_symbol += 1
         return correct_position, correct_symbol
+
+    def play(self):
+        pass
