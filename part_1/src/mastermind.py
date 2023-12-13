@@ -6,4 +6,4 @@ class Mastermind:
 
     @property
     def symbols(self):
-        pass
+        return self._symbols
