@@ -4,4 +4,7 @@ sys.path.append(os.getcwd() + "/part_1/src/")
 
 
 class Codemaker():
-    pass
+    def __init__(self):
+        self.symbols = None
+        self.code_length = None
+        self.secret_code = None
