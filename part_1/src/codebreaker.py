@@ -7,4 +7,5 @@ class Codebreaker():
     def make_guess(self):
         while True:
             guess = input()
-            return guess
+            if len(guess) == 4:
+                return guess
