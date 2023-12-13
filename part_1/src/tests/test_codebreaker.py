@@ -25,6 +25,12 @@ class Tests(unittest.TestCase):
         guess = self.codebreaker.make_guess()
         self.assertTrue(all(char.isupper() for char in guess))
 
+    @patch('builtins.input', side_effect=['WXYZ', 'WYBR'])
+    def test_guess_valid_symbols(self, mock_input):
+        guess = self.codebreaker.make_guess()
+        self.assertTrue(all(
+            char in ["W", "B", "Y", "G", "R", "K"] for char in guess))
+
 
 if __name__ == "__main__":
     unittest.main()
