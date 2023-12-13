@@ -10,17 +10,17 @@ class Tests(unittest.TestCase):
     def setUp(self):
         self.codebreaker = Codebreaker()
 
-    @patch('builtins.input', side_effect=['abc', 'abcd'])
+    @patch('builtins.input', side_effect=['abc', 'wybr'])
     def test_guess_not_none(self, mock_input):
         guess = self.codebreaker.make_guess()
         self.assertIsNotNone(guess)
 
-    @patch('builtins.input', side_effect=['abc', 'abcd'])
+    @patch('builtins.input', side_effect=['abc', 'wybr'])
     def test_guess_length(self, mock_input):
         guess = self.codebreaker.make_guess()
         self.assertEqual(len(guess), 4)
 
-    @patch('builtins.input', return_value='abcd')
+    @patch('builtins.input', return_value='wybr')
     def test_guess_uppercase(self, mock_input):
         guess = self.codebreaker.make_guess()
         self.assertTrue(all(char.isupper() for char in guess))

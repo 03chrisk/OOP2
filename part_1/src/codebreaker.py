@@ -7,5 +7,6 @@ class Codebreaker():
     def make_guess(self):
         while True:
             guess = input().upper()
-            if len(guess) == 4:
+            if all(char in ["W", "B", "Y", "G", "R", "K"]
+                    for char in guess) and len(guess) == 4:
                 return guess
