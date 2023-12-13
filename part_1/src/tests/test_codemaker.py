@@ -14,6 +14,7 @@ class Tests(unittest.TestCase):
 
     def test_code_length_attribute(self):
         self.assertIsNotNone(self.codemaker.code_length)
+        self.assertEqual(self.codemaker.code_length, 4)
 
 
 if __name__ == "__main__":
