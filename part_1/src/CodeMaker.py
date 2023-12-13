@@ -1,1 +1,4 @@
-class CodeMaker:
+
+
+class Codemaker():
+    pass
