@@ -12,4 +12,4 @@ class Mastermind():
         self.max_attempts = max_attempts
 
     def evaluate_guess(self, guess):
-        pass
+        return None, None
