@@ -4,4 +4,5 @@ sys.path.append(os.getcwd() + "/part_1/src/")
 
 
 class Codebreaker():
-    pass
+    def make_guess(self):
+        pass
