@@ -9,4 +9,4 @@ class Mastermind():
     def __init__(self, max_attempts):
         self.codemaker = Codemaker()
         self.codebreaker = Codebreaker()
-        self.max_attempts = None
+        self.max_attempts = max_attempts

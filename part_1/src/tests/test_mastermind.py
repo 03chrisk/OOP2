@@ -7,7 +7,7 @@ from mastermind import Mastermind
 
 class Tests(unittest.TestCase):
     def setUp(self):
-        self.mastermind = Mastermind(max_attempts=None)
+        self.mastermind = Mastermind(max_attempts=10)
 
     def test_max_attempts(self):
         self.assertIsNotNone(self.mastermind.max_attempts)
