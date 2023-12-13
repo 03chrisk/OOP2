@@ -8,7 +8,7 @@ from mastermind import Mastermind
 class Tests(unittest.TestCase):
     def setUp(self):
         self.mastermind = Mastermind(max_attempts=10)
-        # Mocking the secret code 
+        # Mocking the secret code
         self.mastermind.codemaker.secret_code = ['W', 'B', 'Y', 'G']
 
     def test_max_attempts(self):
