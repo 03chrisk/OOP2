@@ -1,5 +1,5 @@
 class Codemaker():
     def __init__(self):
-        self.symbols = None
-        self.code_length = None
+        self.symbols = ["W", "B", "Y", "G", "R", "K"]
+        self.code_length = 4
         self.secret_code = None
