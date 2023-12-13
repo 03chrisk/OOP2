@@ -3,5 +3,5 @@ import sys
 sys.path.append(os.getcwd() + "/part_1/src/")
 
 
-class Mastermind():
+class Codebreaker():
     pass
