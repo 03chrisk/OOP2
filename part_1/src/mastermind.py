@@ -10,3 +10,6 @@ class Mastermind():
         self.codemaker = Codemaker()
         self.codebreaker = Codebreaker()
         self.max_attempts = max_attempts
+
+    def evaluate_guess(self, guess):
+        pass
