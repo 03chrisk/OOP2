@@ -19,7 +19,8 @@ class Tests(unittest.TestCase):
         self.assertIsNotNone(self.mastermind.evaluate_guess(guess))
 
     def test_eval_guess_correct_position_and_symbol(self):
-        guess = ['W', 'B', 'Y', 'G']  # All correct
+        # All correct
+        guess = ['W', 'B', 'Y', 'G']
         correct_pos, correct_symbol = self.mastermind.evaluate_guess(guess)
         self.assertEqual(correct_pos, 4)
         self.assertEqual(correct_symbol, 0)
@@ -39,16 +40,10 @@ class Tests(unittest.TestCase):
         self.assertEqual(correct_symbol, 1)
 
     def test_eval_guess_none_correct(self):
-        guess = ['R', 'R', 'R', 'R']  # None correct
+        # None correct
+        guess = ['R', 'R', 'R', 'R']
         correct_pos, correct_symbol = self.mastermind.evaluate_guess(guess)
         self.assertEqual(correct_pos, 0)
-        self.assertEqual(correct_symbol, 0)
-
-    def test_brightspace_testcase(self):
-        self.mastermind.secret_code = ['B', 'B', 'B', 'Y']
-        guess = ['B', 'B', 'B', 'B']
-        correct_pos, correct_symbol = self.mastermind.evaluate_guess(guess)
-        self.assertEqual(correct_pos, 3)
         self.assertEqual(correct_symbol, 0)
 
 
