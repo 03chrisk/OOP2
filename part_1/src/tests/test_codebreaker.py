@@ -15,6 +15,11 @@ class Tests(unittest.TestCase):
         guess = self.codebreaker.make_guess()
         self.assertEqual(guess, 'abc')
 
+    @patch('builtins.input', side_effect=["ABC", "WXYZ"])
+    def test_guess_length(self, mock_input):
+        guess = self.codebreaker.make_guess()
+        self.assertEqual(len(guess), 4)
+
 
 if __name__ == "__main__":
     unittest.main()
