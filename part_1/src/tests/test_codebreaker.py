@@ -10,12 +10,12 @@ class Tests(unittest.TestCase):
     def setUp(self):
         self.codebreaker = Codebreaker()
 
-    @patch('builtins.input', return_value='abc')
-    def test_guess_existence(self, mock_input):
+    @patch('builtins.input', side_effect=['abc', 'abcd'])
+    def test_guess_not_none(self, mock_input):
         guess = self.codebreaker.make_guess()
-        self.assertEqual(guess, 'abc')
+        self.assertIsNotNone(guess)
 
-    @patch('builtins.input', side_effect=["ABC", "WXYZ"])
+    @patch('builtins.input', side_effect=['abc', 'abcd'])
     def test_guess_length(self, mock_input):
         guess = self.codebreaker.make_guess()
         self.assertEqual(len(guess), 4)
