@@ -16,6 +16,9 @@ class Tests(unittest.TestCase):
         self.assertIsNotNone(self.codemaker.code_length)
         self.assertEqual(self.codemaker.code_length, 4)
 
+    def test_secret_code(self):
+        self.assertIsNotNone(self.codemaker.secret_code)
+
 
 if __name__ == "__main__":
     unittest.main()
