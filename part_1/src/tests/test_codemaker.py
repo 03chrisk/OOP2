@@ -18,6 +18,12 @@ class Tests(unittest.TestCase):
 
     def test_secret_code(self):
         self.assertIsNotNone(self.codemaker.secret_code)
+        self.assertEqual(len(self.codemaker.secret_code),
+                         self.codemaker.code_length)
+
+    def test_secret_code_symbols(self):
+        for symbol in self.codemaker.secret_code:
+            self.assertIn(symbol, ["W", "B", "Y", "G", "R", "K"])
 
 
 if __name__ == "__main__":
