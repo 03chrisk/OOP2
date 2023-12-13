@@ -20,6 +20,11 @@ class Tests(unittest.TestCase):
         guess = self.codebreaker.make_guess()
         self.assertEqual(len(guess), 4)
 
+    @patch('builtins.input', return_value='abcd')
+    def test_guess_uppercase(self, mock_input):
+        guess = self.codebreaker.make_guess()
+        self.assertTrue(all(char.isupper() for char in guess))
+
 
 if __name__ == "__main__":
     unittest.main()
