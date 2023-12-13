@@ -24,4 +24,15 @@ class Mastermind():
         return correct_position, correct_symbol
 
     def play(self):
-        pass
+        for attempt in range(1, self.max_attempts + 1):
+            guess = self.codebreaker.make_guess()
+            correct_position, correct_symbol = self.evaluate_guess(guess)
+            print(f"Attempt {attempt}: {correct_position} correct positions,\
+                 {correct_symbol} correct guesses in the wrong position.")
+
+            if correct_position == 4:
+                print("Congratulations! You've cracked the code.")
+                return
+
+        print("Game Over. The correct code was:", ''.join(
+            self.codemaker.secret_code))
