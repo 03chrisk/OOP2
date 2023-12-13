@@ -15,5 +15,6 @@ class Tests(unittest.TestCase):
         guess = self.codebreaker.make_guess()
         self.assertEqual(guess, 'abc')
 
+
 if __name__ == "__main__":
     unittest.main()
