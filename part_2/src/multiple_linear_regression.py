@@ -6,10 +6,12 @@ class MultipleLinearRegression(MachineLearningModel):
     def __init__(self) -> None:
         self.__coefficients = None
 
-    def get_coefficients(self) -> np.ndarray:
+    @property
+    def coefficients(self) -> np.ndarray:
         return self.__coefficients
 
-    def set_coefficients(self, new_val: np.ndarray) -> None:
+    @coefficients.setter
+    def coefficients(self, new_val: np.ndarray) -> None:
         self.__coefficients = new_val
 
     def train(self, X_train: np.ndarray, y_train: np.ndarray) -> None:
@@ -43,7 +45,7 @@ class MultipleLinearRegression(MachineLearningModel):
             raise ValueError("Dot product of X_b transpose with X_b\
             is singular and cannot be inverted") from e
 
-        self.set_coefficients(result)
+        self.coefficients = result
 
     def predict(self, X_test: np.ndarray) -> np.ndarray:
         '''
@@ -61,7 +63,7 @@ class MultipleLinearRegression(MachineLearningModel):
         if not isinstance(X_test, np.ndarray):
             raise ValueError("Testing data must be an np.ndarray")
 
-        coefficients = self.get_coefficients()
+        coefficients = self.coefficients
         X_test = np.c_[np.ones((len(X_test))), X_test]
         y_predict = np.dot(X_test, coefficients)
         y_predict = y_predict.reshape(-1, 1)

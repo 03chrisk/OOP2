@@ -7,7 +7,7 @@ class RegressionPlotter:
     def __init__(self, model: MachineLearningModel) -> None:
         self.__model = model
 
-    def get_model(self) -> MachineLearningModel:
+    def __get_model(self) -> MachineLearningModel:
         return self.__model
 
     def plot_model(self,
@@ -74,7 +74,7 @@ class RegressionPlotter:
         ax = fig.add_subplot(111, projection='3d')
 
         x1, x2 = X_test[:, 0], X_test[:, 1]
-        model = self.get_model()
+        model = self.__get_model()
         y_pred_test = model.predict(X_test)
 
         ax.scatter(x1, x2, y_test, color='green', label='Actual Test')
@@ -114,9 +114,9 @@ class RegressionPlotter:
                                                                 np.ndarray):
             raise ValueError("Testing data must be an np.ndarray")
 
-        model = self.get_model()
+        model = self.__get_model()
         num_features = X_test.shape[1]
-        weights = model.get_coefficients()
+        weights = model.coefficients
         intercept = weights[0]
 
         for i in range(num_features):

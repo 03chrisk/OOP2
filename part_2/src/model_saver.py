@@ -31,7 +31,7 @@ class ModelSaver:
         if not isinstance(format_type, str) or not isinstance(filename, str):
             raise ValueError("Format_type and filename have to be strings")
 
-        coefficients = model.get_coefficients()
+        coefficients = model.coefficients
 
         if format_type == 'csv':
             self.__save_csv(coefficients, filename)
