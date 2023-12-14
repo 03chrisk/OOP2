@@ -120,7 +120,7 @@ class RegressionPlotter:
         intercept = weights[0]
 
         for i in range(num_features):
-            slope = weights[i+1]
+            slope = weights[i + 1]
             feature_values = X_test[:, i]
 
             y_pred = slope * feature_values + intercept
