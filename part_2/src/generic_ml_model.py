@@ -22,10 +22,3 @@ class MachineLearningModel(ABC):
             X_test: Data for making predictions.
         """
         pass
-
-    @abstractmethod
-    def get_coefficients(self):
-        """
-        Get the model's coefficients.
-        """
-        pass
