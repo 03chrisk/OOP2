@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import patch
 import os
 import sys
-sys.path.append("..")
+sys.path.append(os.getcwd() + "/part_1/src/")
 from mastermind import Mastermind
 
 
