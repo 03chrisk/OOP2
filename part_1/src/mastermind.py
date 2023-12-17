@@ -1,19 +1,38 @@
+import os
+import sys
+sys.path.append(os.getcwd() + "/part_1/src/")
+from CodeMaker import Codemaker
+from codebreaker import Codebreaker
 
-class Mastermind:
 
-    def __init__(self, attempts):
-        self._symbols = ["W", "B", "Y", "G", "R", "K"]
-        self._code_length = 4
-        self._num_attempts = attempts
+class Mastermind():
+    def __init__(self, max_attempts):
+        self.codemaker = Codemaker()
+        self.codebreaker = Codebreaker()
+        self.max_attempts = max_attempts
 
-    @property
-    def symbols(self):
-        return self._symbols
+    def evaluate_guess(self, guess):
+        correct_position = sum(
+            a == b for a, b in zip(guess, self.codemaker.secret_code))
 
-    @property
-    def code_length(self):
-        return self._code_length
+        secret_code_copy = list(self.codemaker.secret_code)
+        correct_symbol = 0
+        for i, symbol in enumerate(guess):
+            if symbol in secret_code_copy:
+                if symbol != self.codemaker.secret_code[i]:
+                    correct_symbol += 1
+        return correct_position, correct_symbol
 
-    @property
-    def num_attempts(self):
-        return self._num_attempts
+    def play(self):
+        for attempt in range(1, self.max_attempts + 1):
+            guess = self.codebreaker.make_guess()
+            correct_position, correct_symbol = self.evaluate_guess(guess)
+            print(f"Attempt {attempt}: {correct_position} correct positions,\
+                 {correct_symbol} correct guesses in the wrong position.")
+
+            if correct_position == 4:
+                print("Congratulations! You've cracked the code.")
+                return
+
+        print("Game Over. The correct code was:", ''.join(
+            self.codemaker.secret_code))
