@@ -4,7 +4,18 @@ sys.path.append(os.getcwd() + "/part_1/src/")
 
 
 class Codebreaker():
-    def make_guess(self):
+    def make_guess(self) -> list:
+
+        """
+        This method prompts the user for input until they enter a valid guess.
+
+        Args:
+            None
+
+        Returns:
+            A list with the user's guess (containing 4 letters)
+        """
+
         while True:
             guess = input("Enter your guess from the following letters : \
                 W, B, Y, G, R, K. (e.g., WYBR): ").upper()
