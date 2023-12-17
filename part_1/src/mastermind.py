@@ -6,12 +6,12 @@ from codebreaker import Codebreaker
 
 
 class Mastermind():
-    def __init__(self, max_attempts):
+    def __init__(self, max_attempts:int) -> None:
         self.codemaker = Codemaker()
         self.codebreaker = Codebreaker()
         self.max_attempts = max_attempts
 
-    def evaluate_guess(self, guess):
+    def evaluate_guess(self, guess:list) -> tuple[int, int]:
         correct_position = sum(
             a == b for a, b in zip(guess, self.codemaker.secret_code))
 
@@ -23,7 +23,7 @@ class Mastermind():
                     correct_symbol += 1
         return correct_position, correct_symbol
 
-    def play(self):
+    def play(self) -> None:
         for attempt in range(1, self.max_attempts + 1):
             guess = self.codebreaker.make_guess()
             correct_position, correct_symbol = self.evaluate_guess(guess)
