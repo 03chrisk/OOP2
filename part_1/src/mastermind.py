@@ -12,6 +12,18 @@ class Mastermind():
         self.max_attempts = max_attempts
 
     def evaluate_guess(self, guess:list) -> tuple[int, int]:
+
+        """
+        This method evaluates the user's guess by calculating the number of
+        correct positions in the guess and the number of correct symbols.
+
+        Args:
+            A list with the user's guess
+
+        Returns:
+            A tuple of integers, correct_position and correct_symbol
+        """
+
         correct_position = sum(
             a == b for a, b in zip(guess, self.codemaker.secret_code))
 
@@ -24,6 +36,19 @@ class Mastermind():
         return correct_position, correct_symbol
 
     def play(self) -> None:
+
+        """
+        This method calls the make_guess function and then evaluate_guess.
+        If the user has guessed the correct code, the game ends. Otherwise,
+        the loop continues until the user still has guesses left.
+
+        Args:
+            None
+
+        Returns:
+            None
+        """
+
         for attempt in range(1, self.max_attempts + 1):
             guess = self.codebreaker.make_guess()
             correct_position, correct_symbol = self.evaluate_guess(guess)
