@@ -3,10 +3,28 @@ import numpy as np
 
 
 class RidgeRegression(RegularizedRegression):
-    def _calculate_regularization_penalty(self):
+    def _calculate_regularization_penalty(self) -> float:
+        """
+        Calculate the L2 regularization penalty for Ridge Regression.
+
+        Returns:
+            float: The L2 regularization penalty.
+        """
+
         return self.lambda_ * np.sum(np.square(self.coefficients))
 
-    def _calculate_gradient(self, X, y):
+    def _calculate_gradient(self, X: np.ndarray, y: np.ndarray) -> np.ndarray:
+        """
+        Calculate the gradient for Ridge Regression.
+
+        Args:
+            X (np.ndarray): The feature matrix.
+            y (np.ndarray): The response vector.
+
+        Returns:
+            np.ndarray: The gradient of the loss function.
+        """
+
         predictions = X.dot(self.coefficients)
         residuals = y - predictions
         gradient = -2 * X.T.dot(residuals) / len(y)
