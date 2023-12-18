@@ -77,6 +77,24 @@ class RegularizedRegression(MultipleLinearRegression, ABC):
             raise ValueError("Unknown initialization strategy")
 
     def train(self, X_train: np.ndarray, y_train: np.ndarray) -> None:
+        '''
+        Trains the model using the provided training data. This method updates
+        the model's coefficients based on gradient descent optimization.
+
+        Args:
+            X_train (numpy.ndarray): The independent variables (features) of
+            the training data.
+            y_train (numpy.ndarray): The dependent variable (target) of the
+            training data.
+
+        Returns:
+            None
+
+        Raises:
+            ValueError: If either X_train or y_train is not an instance of
+            numpy.ndarray.
+        '''
+
         if not isinstance(X_train, np.ndarray) or not isinstance(y_train,
                                                                  np.ndarray):
             raise ValueError("Training data must be an np.ndarray")
@@ -99,6 +117,22 @@ class RegularizedRegression(MultipleLinearRegression, ABC):
             self.coefficients -= self.alpha * gradients
 
     def _calculate_loss(self, residuals: np.ndarray) -> float:
+        '''
+        Calculates the loss for the current model predictions using Mean
+        Squared Error (MSE) and adds a regularization penalty.
+
+        Args:
+            residuals (numpy.ndarray): The difference between the actual values
+            and the predicted values from the model.
+
+        Returns:
+            float: The calculated loss value, which is the sum of MSE and the
+            regularization penalty.
+
+        Raises:
+            ValueError: If residuals is not an instance of numpy.ndarray.
+        '''
+
         if not isinstance(residuals, np.ndarray):
             raise ValueError("Training data must be an np.ndarray")
 
@@ -108,6 +142,19 @@ class RegularizedRegression(MultipleLinearRegression, ABC):
         return mse + regularization_penalty
 
     def _calculate_mae(self, residuals: np.ndarray) -> float:
+        '''
+        Calculates the Mean Absolute Error (MAE) of the model's predictions.
+
+        Args:
+            residuals (numpy.ndarray): The difference between the actual values
+            and the predicted values from the model.
+
+        Returns:
+            float: The calculated mean absolute error.
+
+        Raises:
+            ValueError: If residuals is not an instance of numpy.ndarray.
+        '''
         if not isinstance(residuals, np.ndarray):
             raise ValueError("Training data must be an np.ndarray")
 
