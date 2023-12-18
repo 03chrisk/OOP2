@@ -19,6 +19,17 @@ class Codemaker():
     def secret_code(self):
         return self._secret_code
 
+    @secret_code.setter
+    def secret_code(self, new_code):
+        if isinstance(new_code, list) and len(new_code) == self.code_length:
+            if all(symbol in self.__symbols for symbol in new_code):
+                self._secret_code = new_code
+            else:
+                raise ValueError("New code contains invalid symbols.")
+        else:
+            raise ValueError("New code must be a list of length {}"
+                             .format(self.__code_length))
+
     def generate_code(self) -> list:
 
         """
