@@ -10,7 +10,7 @@ logging.basicConfig(filename='training.log', level=logging.INFO,
 
 class RegularizedRegression(MultipleLinearRegression, ABC):
     def __init__(self, alpha: float, lambda_: float,
-                 m: int, init_strat: str) -> None:
+                 num_iter: int, init_strat: str) -> None:
         """
         Initialize the Regularized Regression model.
 
@@ -24,7 +24,7 @@ class RegularizedRegression(MultipleLinearRegression, ABC):
         super().__init__()
         self._alpha = alpha
         self._lambda_ = lambda_
-        self._m = m
+        self._num_iter = num_iter
         self._init_strat = init_strat
 
     @property
@@ -48,14 +48,14 @@ class RegularizedRegression(MultipleLinearRegression, ABC):
         self._lambda_ = value
 
     @property
-    def m(self):
-        return self._m
+    def num_iter(self):
+        return self._num_iter
 
-    @m.setter
+    @num_iter.setter
     def m(self, value):
         if not isinstance(value, int) or value <= 0:
             raise ValueError("Number of iterations must be a positive integer")
-        self._m = value
+        self._num_iter = value
 
     @property
     def init_strat(self):
@@ -86,13 +86,14 @@ class RegularizedRegression(MultipleLinearRegression, ABC):
 
         X_b = np.c_[np.ones(len(X_train)), X_train]  # Add bias term
 
-        for iteration in range(self.m):
+        for iteration in range(self.num_iter):
             predictions = self.predict(X_train).flatten()
             residuals = y_train - predictions
             loss = self._calculate_loss(residuals)
             mae = self._calculate_mae(residuals)
             logging.info(
-                f'Iteration {iteration+1}/{self.m}, Loss: {loss}, MAE: {mae}')
+                f'Iteration {iteration+1}/{self.num_iter},\
+                      Loss: {loss}, MAE: {mae}')
 
             gradients = self._calculate_gradient(X_b, y_train)
             self.coefficients -= self.alpha * gradients

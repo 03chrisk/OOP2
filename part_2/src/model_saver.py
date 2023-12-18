@@ -34,8 +34,12 @@ class ModelSaver:
         coefficients = model.coefficients
 
         if format_type == 'csv':
+            if filename[-4:] != '.csv':
+                filename += '.csv'
             self.__save_csv(coefficients, filename)
         elif format_type == 'json':
+            if filename[-5:] != '.json':
+                filename += '.json'
             self.__save_json(coefficients, filename)
         else:
             raise ValueError("Unsupported format type.")
@@ -61,8 +65,12 @@ class ModelSaver:
             raise ValueError("Format_type and filename have to be strings")
 
         if format_type == 'csv':
+            if filename[-4:] != '.csv':
+                filename += '.csv'
             weights = self.__load_csv(filename)
         elif format_type == 'json':
+            if filename[-5:] != '.json':
+                filename += '.json'
             weights = self.__load_json(filename)
         else:
             raise ValueError("Unsupported format type.")

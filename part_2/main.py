@@ -31,7 +31,6 @@ if __name__ == "__main__":
     alpha = 0.01  # Learning rate
     lambda_ = 0.01  # Regularization parameter
     iterations = 1000  # Number of iterations
-    max_iter = 1000
 
     # Creating instances
     lasso_model = LassoRegression(alpha, lambda_, iterations, 'normal')
