@@ -7,9 +7,21 @@ from codebreaker import Codebreaker
 
 class Mastermind():
     def __init__(self, max_attempts: int) -> None:
-        self.codemaker = Codemaker()
-        self.codebreaker = Codebreaker()
-        self.max_attempts = max_attempts
+        self.__codemaker = Codemaker()
+        self.__codebreaker = Codebreaker()
+        self.__max_attempts = max_attempts
+
+    @property
+    def max_attempts(self):
+        return self.__max_attempts
+
+    @property
+    def codemaker(self):
+        return self.__codemaker
+
+    @property
+    def codebreaker(self):
+        return self.__codebreaker
 
     def evaluate_guess(self, guess: list) -> tuple[int, int]:
 
@@ -28,11 +40,18 @@ class Mastermind():
             a == b for a, b in zip(guess, self.codemaker.secret_code))
 
         secret_code_copy = list(self.codemaker.secret_code)
+
+        for i, symbol in enumerate(guess):
+            if symbol == self.codemaker.secret_code[i]:
+                secret_code_copy[i] = None
+
         correct_symbol = 0
         for i, symbol in enumerate(guess):
             if symbol in secret_code_copy:
                 if symbol != self.codemaker.secret_code[i]:
                     correct_symbol += 1
+                    secret_code_copy.remove(symbol)
+
         return correct_position, correct_symbol
 
     def play(self) -> None:
