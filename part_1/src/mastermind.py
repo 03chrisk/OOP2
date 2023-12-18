@@ -23,7 +23,7 @@ class Mastermind():
     def codebreaker(self):
         return self.__codebreaker
 
-    def __evaluate_guess(self, guess: list) -> tuple[int, int]:
+    def _evaluate_guess(self, guess: list) -> tuple[int, int]:
 
         """
         This method evaluates the user's guess by calculating the number of
@@ -70,7 +70,7 @@ class Mastermind():
 
         for attempt in range(1, self.max_attempts + 1):
             guess = self.codebreaker.make_guess()
-            correct_position, correct_symbol = self.__evaluate_guess(guess)
+            correct_position, correct_symbol = self._evaluate_guess(guess)
             print(f"Attempt {attempt}: {correct_position} correct positions,\
                  {correct_symbol} correct guesses in the wrong position.")
 
