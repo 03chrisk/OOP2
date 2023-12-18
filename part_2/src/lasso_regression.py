@@ -24,6 +24,8 @@ class LassoRegression(RegularizedRegression):
         Returns:
             np.ndarray: The gradient of the loss function.
         """
+        if not isinstance(X, np.ndarray) or not isinstance(y, np.ndarray):
+            raise ValueError("Data must be an np.ndarray")
 
         predictions = X.dot(self.coefficients)
         residuals = y - predictions

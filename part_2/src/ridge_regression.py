@@ -11,7 +11,7 @@ class RidgeRegression(RegularizedRegression):
             float: The L2 regularization penalty.
         """
 
-        return self.lambda_ * np.sum(np.square(self.coefficients))
+        return self.lambda_ * np.sqrt(np.sum(np.square(self.coefficients)))
 
     def _calculate_gradient(self, X: np.ndarray, y: np.ndarray) -> np.ndarray:
         """
@@ -24,6 +24,8 @@ class RidgeRegression(RegularizedRegression):
         Returns:
             np.ndarray: The gradient of the loss function.
         """
+        if not isinstance(X, np.ndarray) or not isinstance(y, np.ndarray):
+            raise ValueError("Data must be an np.ndarray")
 
         predictions = X.dot(self.coefficients)
         residuals = y - predictions

@@ -77,7 +77,11 @@ class RegularizedRegression(MultipleLinearRegression, ABC):
             raise ValueError("Unknown initialization strategy")
 
     def train(self, X_train: np.ndarray, y_train: np.ndarray) -> None:
-        n_samples, n_features = X_train.shape
+        if not isinstance(X_train, np.ndarray) or not isinstance(y_train,
+                                                                 np.ndarray):
+            raise ValueError("Training data must be an np.ndarray")
+
+        n_features = X_train.shape[1]
         self.coefficients = self._initialize_coefficients(n_features)
 
         X_b = np.c_[np.ones(len(X_train)), X_train]  # Add bias term
@@ -94,15 +98,28 @@ class RegularizedRegression(MultipleLinearRegression, ABC):
             self.coefficients -= self.alpha * gradients
 
     def _calculate_loss(self, residuals: np.ndarray) -> float:
+        if not isinstance(residuals, np.ndarray):
+            raise ValueError("Training data must be an np.ndarray")
+
         mse = np.mean(residuals ** 2)
         regularization_penalty = self._calculate_regularization_penalty()
+
         return mse + regularization_penalty
 
     def _calculate_mae(self, residuals: np.ndarray) -> float:
+        if not isinstance(residuals, np.ndarray):
+            raise ValueError("Training data must be an np.ndarray")
+
         return np.mean(np.abs(residuals))
 
-    def _calculate_regularization_penalty(self):
-        # This method is implemented in LassoRegression and RidgeRegression
+    @abstractmethod
+    def _calculate_regularization_penalty(self) -> float:
+        """
+        Abstract method to calculate the regularization penalty.
+
+        Returns:
+            float: The regularization penalty.
+        """
         pass
 
     @abstractmethod

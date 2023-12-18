@@ -6,12 +6,12 @@ from codebreaker import Codebreaker
 
 
 class Mastermind():
-    def __init__(self, max_attempts:int) -> None:
+    def __init__(self, max_attempts: int) -> None:
         self.codemaker = Codemaker()
         self.codebreaker = Codebreaker()
         self.max_attempts = max_attempts
 
-    def evaluate_guess(self, guess:list) -> tuple[int, int]:
+    def evaluate_guess(self, guess: list) -> tuple[int, int]:
 
         """
         This method evaluates the user's guess by calculating the number of
