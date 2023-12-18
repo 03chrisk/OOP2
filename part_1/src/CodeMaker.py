@@ -5,7 +5,7 @@ class Codemaker():
     def __init__(self) -> None:
         self.__symbols = ["W", "B", "Y", "G", "R", "K"]
         self.__code_length = 4
-        self.__secret_code = self.generate_code()
+        self._secret_code = self.generate_code()
 
     @property
     def symbols(self):
@@ -17,7 +17,7 @@ class Codemaker():
 
     @property
     def secret_code(self):
-        return self.__secret_code
+        return self._secret_code
 
     def generate_code(self) -> list:
 
